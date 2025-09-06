@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
     <html lang="en">
-        <body className={`${inter.className}`}>
+        <body className={`${inter.className} dotted-background`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <Header />
        <main className="min-h-screen">{children}</main>
