@@ -6,9 +6,11 @@ import UserMenu from "./user-menu";
 import { PenBox } from "lucide-react";
 import Image from "next/image";
 import { checkUser } from "@/lib/checkUser";
+import UserLoading from "./user-loading";
 
 async function Header() {
-   await checkUser()
+  await checkUser();
+
   return (
     <header className="container mx-auto">
       <nav className="py-6 px-4 flex justify-between items-center">
@@ -40,6 +42,8 @@ async function Header() {
           </SignedIn>
         </div>
       </nav>
+
+      <UserLoading />
     </header>
   );
 }

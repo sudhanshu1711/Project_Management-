@@ -22,8 +22,22 @@ export default clerkMiddleware((auth, req) => {
   ) {
     return NextResponse.redirect(new URL("/onboarding", req.url));
   }
-});
 
+const allowedWithoutOrg = [
+    "/",
+    "/onboarding",
+    "/project/create", // allow client-side check
+  ];
+
+  if (
+    auth().userId &&
+    !auth().orgId &&
+    !allowedWithoutOrg.includes(pathname) &&
+    !orgBySlugRoute.test(pathname)
+  ) {
+    return NextResponse.redirect(new URL("/onboarding", req.url));
+  }
+});
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
